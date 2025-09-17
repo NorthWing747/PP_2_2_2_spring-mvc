@@ -14,7 +14,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cars")
 public class CarController {
-
     private final CarService carService;
 
     @Autowired
@@ -23,26 +22,9 @@ public class CarController {
     }
 
     @GetMapping
-    public String getCars(@RequestParam(required = false) Integer count, Model model) {
-        List<Car> cars;
-
-        if (count != null) {
-            cars = carService.getCars(count);
-        } else {
-            cars = carService.getAllCars();
-        }
-
+    public String getCars(@RequestParam(defaultValue = "5") int count, Model model) {
+        List<Car> cars = carService.getCars(count);
         model.addAttribute("cars", cars);
-        model.addAttribute("totalCars", carService.getTotalCars());
-        model.addAttribute("requestedCount", count);
-
         return "cars";
     }
 }
-
-//http://localhost:8080/cars - все 5 машин
-//http://localhost:8080/cars?count=2 - первые 2 машины
-//http://localhost:8080/cars?count=3 - первые 3 машины
-//http://localhost:8080/cars?count=5 - все 5 машин
-//http://localhost:8080/cars?count=10 - все 5 машин (так как всего 5)
-//http://localhost:8080/cars?count=0 - пустой список
