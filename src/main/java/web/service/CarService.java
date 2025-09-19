@@ -16,8 +16,8 @@ public class CarService {
         this.carDao = carDao;
     }
 
-    public List<Car> getByCount(Integer count) {
-        return carDao.getCars(count);
+    public List<Car> getByCount(int count) {
+        return carDao.getByCount(count);
     }
 
 }

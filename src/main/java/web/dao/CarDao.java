@@ -19,7 +19,7 @@ public class CarDao {
             new Car("Audi", "A4", 2022)
     );
 
-    public List<Car> getCars(int count) {
+    public List<Car> getByCount(int count) {
         if (count <= 0) {
             return Collections.emptyList();
         }
